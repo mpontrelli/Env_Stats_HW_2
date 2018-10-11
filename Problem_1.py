@@ -15,8 +15,18 @@ O = np.zeros((100000, 12))
 
 #Sample sizes of 25
 for i in range(100000):
-    X = np.random.lognormal(0,1,25)
-    O[i,0] = np.sum(X)/len(X)
+    X = np.random.lognormal(0,1,26)
+    O[i,0] = np.sum(X)/len(X) #estimate of mean
+    
+    
+    b = np.sort(X) #sort to estimate median
+    if len(X) % 2 == 0:
+        O[i:2] = (b[len(b)/2-1]+b[len(b)/2])/2
+    else:
+        O[i:2] = b[(len(b)+1)/2-1]
+            
+        
+    
     
 
 #Testing github
